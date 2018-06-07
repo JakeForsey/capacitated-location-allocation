@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<solver>
+
+    <!-- Define the model -->
+    <scanAnnotatedClasses>
+        <packageInclude>domain</packageInclude>
+    </scanAnnotatedClasses>
+
+    <!-- Define the score function -->
+    <scoreDirectorFactory>
+        <easyScoreCalculatorClass>score.LocationAllocationEasyScoreCalculator</easyScoreCalculatorClass>
+    </scoreDirectorFactory>
+
+    <!-- Configure the optimization algorithm(s) -->
+    <termination>
+        <minutesSpentLimit>1</minutesSpentLimit>
+    </termination>
+
+    <constructionHeuristic>
+        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+    </constructionHeuristic>
+
+    <localSearch>
+        <unionMoveSelector>
+            <changeMoveSelector/>
+            <swapMoveSelector/>
+            <pillarChangeMoveSelector/>
+            <pillarSwapMoveSelector/>
+        </unionMoveSelector>
+    </localSearch>
+
+
+</solver>
