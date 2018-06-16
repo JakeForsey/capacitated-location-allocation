@@ -42,10 +42,10 @@ public class LocationAllocationEasyScoreCalculator implements EasyScoreCalculato
 
             if (demandCount != 0) {
                 double targetAssignedDemand = (demandLocationList.size() / locationAllocationSolution.getnStartLocations());
-                if (demandCount > targetAssignedDemand + 1) {
+                if (demandCount > targetAssignedDemand + 2) {
                     hardScore += 1;
                 }
-                if (demandCount < targetAssignedDemand -1) {
+                if (demandCount < targetAssignedDemand - 2) {
                     hardScore += 1;
                 }
             }

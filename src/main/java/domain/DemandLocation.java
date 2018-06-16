@@ -1,12 +1,16 @@
 package domain;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import org.apache.commons.math3.ml.clustering.Clusterable;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
+import solver.KMeansDifficultyWeightFactory;
 
-@PlanningEntity
+
+@PlanningEntity(difficultyWeightFactoryClass = KMeansDifficultyWeightFactory.class)
 @XStreamAlias("DemandLocation")
-public class DemandLocation {
+// implement Clusterable so that apache clustering can be used for initialisation
+public class DemandLocation implements Clusterable {
 
     private double x;
     private double y;
@@ -37,5 +41,10 @@ public class DemandLocation {
 
     public double getY() {
         return y;
+    }
+
+    // Clusterable method for KMeans initialisation
+    public double[] getPoint() {
+        return new double[] { getX(), getY() };
     }
 }

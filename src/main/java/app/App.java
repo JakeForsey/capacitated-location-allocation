@@ -8,6 +8,7 @@ import domain.StartLocation;
 import io.CsvDemandLocation;
 import org.optaplanner.core.api.solver.Solver;
 import org.optaplanner.core.api.solver.SolverFactory;
+import solver.SolverProgressAnimator;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,10 +22,12 @@ public class App {
     private static final int MAP_WIDTH = 100;
 
     private static final int N_POTENTIAL_START_LOCATIONS = 10;
-    private static final int N_TARGET_START_LOCATIONS = 5;
+    private static final int N_TARGET_START_LOCATIONS = 3;
 
     private static final int N_DEMAND_LOCATIONS = 50;
 
+    private static final String SOLUTION_FILE_PATH = "/home/jake/Data/temp/solution.csv";
+    private static final String ANIMATION_FILE_PATH = "/home/jake/Data/temp/animation.csv";
 
     public static void main(String[] args) throws IOException {
 
@@ -35,14 +38,24 @@ public class App {
                 "SolverConfig.xml");
         Solver<LocationAllocationSolution> solver = solverFactory.buildSolver();
 
+
+        // create a custom event listener that saves algorithm moves so that they can be animated
+        SolverProgressAnimator solverProgressAnimator = new SolverProgressAnimator();
+        solver.addEventListener(solverProgressAnimator);
+
         LocationAllocationSolution unsolvedLocationAllocationSolution = new LocationAllocationSolution(
                 demandLocations,
                 startLocations,
                 N_TARGET_START_LOCATIONS
         );
 
+        // solve the problem
         LocationAllocationSolution solvedLocationAllocationSolution = solver.solve(unsolvedLocationAllocationSolution);
 
+        // save the animation
+        solverProgressAnimator.writeAnimation(new File(ANIMATION_FILE_PATH));
+
+        // save the best solution
         saveSolution(solvedLocationAllocationSolution);
         }
 
@@ -89,7 +102,7 @@ public class App {
         ObjectWriter writer = mapper.writerWithSchemaFor(CsvDemandLocation.class);
 
 
-        writer.writeValues(new File("/home/jake/Data/temp/solution.csv")).writeAll(csvDemandLocations);
+        writer.writeValues(new File(SOLUTION_FILE_PATH)).writeAll(csvDemandLocations);
     }
 
 }
