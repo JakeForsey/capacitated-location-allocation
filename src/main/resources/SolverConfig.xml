@@ -13,15 +13,30 @@
     </scoreDirectorFactory>
 
     <!-- Configure the optimization algorithm(s) -->
-    <termination>
-        <minutesSpentLimit>1</minutesSpentLimit>
-    </termination>
-
     <constructionHeuristic>
         <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
     </constructionHeuristic>
 
     <localSearch>
+        <termination>
+            <minutesSpentLimit>1</minutesSpentLimit>
+        </termination>
+
+        <unionMoveSelector>
+<!--
+            <changeMoveSelector/>
+            <swapMoveSelector/>
+-->
+            <pillarChangeMoveSelector/>
+            <pillarSwapMoveSelector/>
+        </unionMoveSelector>
+    </localSearch>
+
+    <localSearch>
+        <termination>
+            <minutesSpentLimit>1</minutesSpentLimit>
+        </termination>
+
         <unionMoveSelector>
             <changeMoveSelector/>
             <swapMoveSelector/>
@@ -29,6 +44,5 @@
             <pillarSwapMoveSelector/>
         </unionMoveSelector>
     </localSearch>
-
 
 </solver>

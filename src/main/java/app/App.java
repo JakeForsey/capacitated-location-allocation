@@ -21,13 +21,14 @@ public class App {
     private static final int MAP_HEIGHT = 100;
     private static final int MAP_WIDTH = 100;
 
-    private static final int N_POTENTIAL_START_LOCATIONS = 10;
+    private static final int N_POTENTIAL_START_LOCATIONS = 100;
     private static final int N_TARGET_START_LOCATIONS = 3;
 
-    private static final int N_DEMAND_LOCATIONS = 50;
+    private static final int N_DEMAND_LOCATIONS = 500;
 
     private static final String SOLUTION_FILE_PATH = "/home/jake/Data/temp/solution.csv";
-    private static final String ANIMATION_FILE_PATH = "/home/jake/Data/temp/animation.csv";
+    private static final String DEMAND_LOCATIONS_ANIMATION_FILE_PATH = "/home/jake/Data/temp/demand_location_animation.csv";
+    private static final String START_LOCATIONS_ANIMATION_FILE_PATH = "/home/jake/Data/temp/start_location_animation.csv";
 
     public static void main(String[] args) throws IOException {
 
@@ -53,7 +54,8 @@ public class App {
         LocationAllocationSolution solvedLocationAllocationSolution = solver.solve(unsolvedLocationAllocationSolution);
 
         // save the animation
-        solverProgressAnimator.writeAnimation(new File(ANIMATION_FILE_PATH));
+        solverProgressAnimator.writeDemandLocationAnimation(new File(DEMAND_LOCATIONS_ANIMATION_FILE_PATH));
+        solverProgressAnimator.writeStartLocationAnimation(new File(START_LOCATIONS_ANIMATION_FILE_PATH));
 
         // save the best solution
         saveSolution(solvedLocationAllocationSolution);

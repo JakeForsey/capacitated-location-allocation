@@ -52,6 +52,7 @@ public class KMeansDifficultyWeightFactory implements SelectionSorterWeightFacto
                     .append(kMeansMapping.get(this.demandLocation), kMeansMapping.get(other.demandLocation))
                     .append(this.demandLocation.getX(), other.demandLocation.getX())
                     .append(this.demandLocation.getY(), other.demandLocation.getY())
+                    .append(this.demandLocation.hashCode(), other.demandLocation.hashCode())
                     .toComparison();
         }
     }
