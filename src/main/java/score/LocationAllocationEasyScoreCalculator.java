@@ -42,10 +42,18 @@ public class LocationAllocationEasyScoreCalculator implements EasyScoreCalculato
 
             if (demandCount != 0) {
                 double targetAssignedDemand = (demandLocationList.size() / locationAllocationSolution.getnStartLocations());
+                // if the demand count is outside a buffer of the desired demand count then give a binary hard score
                 if (demandCount > targetAssignedDemand + 2) {
+                    // add the difference between target and actual score to the hard score count
+                    // hardScore += (int) Math.abs(targetAssignedDemand - demandCount);
+                    // add a binary 1 to the hard score
                     hardScore += 1;
                 }
+
                 if (demandCount < targetAssignedDemand - 2) {
+                    // add the difference between target and actual score to the hard score count
+                    // hardScore += (int) Math.abs(targetAssignedDemand - demandCount);
+                    // add a binary 1 to the hard score
                     hardScore += 1;
                 }
             }

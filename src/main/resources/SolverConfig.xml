@@ -20,7 +20,7 @@
 
     <localSearch>
         <termination>
-            <minutesSpentLimit>5</minutesSpentLimit>
+            <minutesSpentLimit>1</minutesSpentLimit>
         </termination>
 
         <unionMoveSelector>

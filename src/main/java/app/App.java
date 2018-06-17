@@ -13,24 +13,43 @@ import solver.SolverProgressAnimator;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class App {
 
-    private static final int MAP_HEIGHT = 100;
-    private static final int MAP_WIDTH = 100;
+    // bounding boxes in which to generate points
+    //                                               top left, top right, width, height
+    private static final List<Integer> boundingBox1 = new ArrayList(Arrays.asList(10, 20, 50, 60));
+    private static final List<Integer> boundingBox2 = new ArrayList(Arrays.asList(40, 150, 500, 700));
+    private static final List<Integer> boundingBox3 = new ArrayList(Arrays.asList(600, 600, 400, 400));
+    private static final List<Integer> boundingBox4 = new ArrayList(Arrays.asList(250, 300, 100, 150));
+    private static final List<Integer> boundingBox5 = new ArrayList(Arrays.asList(500, 200, 100, 150));
+    private static final List<Integer> boundingBox6 = new ArrayList(Arrays.asList(100, 700, 150, 100));
 
-    private static final int N_POTENTIAL_START_LOCATIONS = 100;
-    private static final int N_TARGET_START_LOCATIONS = 3;
+    private static List<List<Integer>> boundingBoxes = new ArrayList<>();
 
-    private static final int N_DEMAND_LOCATIONS = 500;
+    private static final int MAP_HEIGHT = 1000;
+    private static final int MAP_WIDTH = 1000;
+
+    private static final int N_POTENTIAL_START_LOCATIONS = 300;
+    private static final int N_TARGET_START_LOCATIONS = 4;
+
+    private static final int N_DEMAND_LOCATIONS = 300;
 
     private static final String SOLUTION_FILE_PATH = "/home/jake/Data/temp/solution.csv";
     private static final String DEMAND_LOCATIONS_ANIMATION_FILE_PATH = "/home/jake/Data/temp/demand_location_animation.csv";
     private static final String START_LOCATIONS_ANIMATION_FILE_PATH = "/home/jake/Data/temp/start_location_animation.csv";
 
     public static void main(String[] args) throws IOException {
+
+        boundingBoxes.add(boundingBox1);
+        boundingBoxes.add(boundingBox2);
+        boundingBoxes.add(boundingBox3);
+        boundingBoxes.add(boundingBox4);
+        boundingBoxes.add(boundingBox5);
+        boundingBoxes.add(boundingBox6);
 
         List<StartLocation> startLocations = createStartLocations();
         List<DemandLocation> demandLocations = createDemandLocations();
@@ -80,7 +99,12 @@ public class App {
         List<DemandLocation> demandLocations = new ArrayList<DemandLocation>();
         for (int i = 0; i < N_DEMAND_LOCATIONS; i++) {
 
-            demandLocations.add(new DemandLocation(random.nextInt(MAP_HEIGHT), random.nextInt(MAP_WIDTH)));
+            List<Integer> boundingBox = boundingBoxes.get(random.nextInt(boundingBoxes.size()));
+
+            demandLocations.add(new DemandLocation(
+                    random.nextInt(boundingBox.get(2)) + boundingBox.get(0),
+                    random.nextInt(boundingBox.get(3)) + boundingBox.get(1))
+            );
         }
         return demandLocations;
     }
