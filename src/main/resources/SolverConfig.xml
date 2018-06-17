@@ -14,35 +14,26 @@
 
     <!-- Configure the optimization algorithm(s) -->
     <constructionHeuristic>
+        <!-- Uses the kmeans comparator to insert entities in the construction phase -->
         <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
     </constructionHeuristic>
 
     <localSearch>
         <termination>
-            <minutesSpentLimit>1</minutesSpentLimit>
-        </termination>
-
-        <unionMoveSelector>
-<!--
-            <changeMoveSelector/>
-            <swapMoveSelector/>
--->
-            <pillarChangeMoveSelector/>
-            <pillarSwapMoveSelector/>
-        </unionMoveSelector>
-    </localSearch>
-
-    <localSearch>
-        <termination>
-            <minutesSpentLimit>1</minutesSpentLimit>
+            <minutesSpentLimit>5</minutesSpentLimit>
         </termination>
 
         <unionMoveSelector>
             <changeMoveSelector/>
             <swapMoveSelector/>
             <pillarChangeMoveSelector/>
-            <pillarSwapMoveSelector/>
         </unionMoveSelector>
+
+        <!-- Allows the algorithm to make large switches -->
+        <forager>
+            <acceptedCountLimit>2000</acceptedCountLimit>
+            <!--<acceptedCountLimit>1</acceptedCountLimit>-->
+        </forager>
     </localSearch>
 
 </solver>
