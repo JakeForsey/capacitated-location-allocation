@@ -33,14 +33,14 @@ public class App {
     private static final int MAP_HEIGHT = 1000;
     private static final int MAP_WIDTH = 1000;
 
-    private static final int N_POTENTIAL_START_LOCATIONS = 300;
+    private static final int N_POTENTIAL_START_LOCATIONS = 1000;
     private static final int N_TARGET_START_LOCATIONS = 4;
 
-    private static final int N_DEMAND_LOCATIONS = 300;
+    private static final int N_DEMAND_LOCATIONS = 2000;
 
-    private static final String SOLUTION_FILE_PATH = "/home/jake/Data/temp/solution.csv";
-    private static final String DEMAND_LOCATIONS_ANIMATION_FILE_PATH = "/home/jake/Data/temp/demand_location_animation.csv";
-    private static final String START_LOCATIONS_ANIMATION_FILE_PATH = "/home/jake/Data/temp/start_location_animation.csv";
+    private static final String SOLUTION_FILE_PATH = "C:\\data\\projects\\capacitated-location-allocation\\solution.csv";
+    private static final String DEMAND_LOCATIONS_ANIMATION_FILE_PATH = "C:\\data\\projects\\capacitated-location-allocation\\demand_location_animation.csv";
+    private static final String START_LOCATIONS_ANIMATION_FILE_PATH = "C:\\data\\projects\\capacitated-location-allocation\\start_location_animation.csv";
 
     public static void main(String[] args) throws IOException {
 
