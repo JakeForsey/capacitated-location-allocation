@@ -19,8 +19,7 @@ import java.util.Random;
 
 public class App {
 
-    // bounding boxes in which to generate points
-    //                                               top left, top right, width, height
+    // bounding boxes in which to generate points (top left, top right, width, height)
     private static final List<Integer> boundingBox1 = new ArrayList(Arrays.asList(10, 20, 50, 60));
     private static final List<Integer> boundingBox2 = new ArrayList(Arrays.asList(40, 150, 500, 700));
     private static final List<Integer> boundingBox3 = new ArrayList(Arrays.asList(600, 600, 400, 400));
@@ -38,9 +37,9 @@ public class App {
 
     private static final int N_DEMAND_LOCATIONS = 2000;
 
-    private static final String SOLUTION_FILE_PATH = "C:\\data\\projects\\capacitated-location-allocation\\solution.csv";
-    private static final String DEMAND_LOCATIONS_ANIMATION_FILE_PATH = "C:\\data\\projects\\capacitated-location-allocation\\demand_location_animation.csv";
-    private static final String START_LOCATIONS_ANIMATION_FILE_PATH = "C:\\data\\projects\\capacitated-location-allocation\\start_location_animation.csv";
+    private static final String SOLUTION_FILE_PATH = "solution.csv";
+    private static final String DEMAND_LOCATIONS_ANIMATION_FILE_PATH = "demand_location_animation.csv";
+    private static final String START_LOCATIONS_ANIMATION_FILE_PATH = "start_location_animation.csv";
 
     public static void main(String[] args) throws IOException {
 
@@ -110,9 +109,6 @@ public class App {
     }
 
     private static void saveSolution(LocationAllocationSolution solution) throws IOException {
-        //ObjectMapper mapper = new ObjectMapper();
-
-        //mapper.writeValue(new File("/home/jake/Data/solution.json"), solution.getDemandLocationList());
 
         List<CsvDemandLocation> csvDemandLocations = new ArrayList<CsvDemandLocation>();
         for (DemandLocation demandLocation : solution.getDemandLocationList()) {
